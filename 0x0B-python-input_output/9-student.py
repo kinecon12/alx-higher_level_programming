@@ -1,26 +1,23 @@
 #!/usr/bin/python3
-import sys
-save_to_json = __import__("7-save_to_json_file").save_to_json_file
-load_from_json = __import__("8-load_from_json_file").load_from_json_file
+"""Defines a class Student."""
 
 
-def add_item(args, filename):
-    '''
-        adds items to a json file
-        @args: The arguments that need to be added.
-        @filename: The file that needs to be updated
-    '''
-    try:
-        content = load_from_json(filename)
-    except:
-        content = []
+class Student:
+    """Represent a student."""
 
-    for item in args:
-        content.append(item)
-    save_to_json(content, filename)
+    def __init__(self, first_name, last_name, age):
+        """Initialize a new Student.
 
+        Args:
+            first_name (str): The first name of the student.
+            last_name (str): The last name of the student.
+            age (int): The age of the student.
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
-if __name__ == "__main__":
-    args = sys.argv[1:]
-    filename = "add_item.json"
-    add_item(args, filename)
+    def to_json(self):
+        """Get a dictionary representation of the Student."""
+        return self.__dict__
+

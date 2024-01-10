@@ -1,14 +1,20 @@
 #!/usr/bin/python3
-def append_after(filename="", search_string="", new_string=""):
-    '''
-        Appends a string after finding a keyword
-    '''
-    my_str = ""
-    with open(filename, encoding="utf8") as fd:
-        for line in fd:
-            my_str += line
-            if search_string in line:
-                my_str += new_string
+"""Defines a text file insertion function."""
 
-    with open(filename, mode="w") as fd:
-        fd.write(my_str)
+
+def append_after(filename="", search_string="", new_string=""):
+    """Insert text after each line containing a given string in a file.
+
+    Args:
+        filename (str): The name of the file.
+        search_string (str): The string to search for within the file.
+        new_string (str): The string to insert.
+    """
+    text = ""
+    with open(filename) as r:
+        for line in r:
+            text += line
+            if search_string in line:
+                text += new_string
+    with open(filename, "w") as w:
+        w.write(text)
